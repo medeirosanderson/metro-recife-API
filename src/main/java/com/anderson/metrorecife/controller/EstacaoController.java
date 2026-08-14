@@ -3,6 +3,7 @@ package com.anderson.metrorecife.controller;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.anderson.metrorecife.model.Estacao;
 import com.anderson.metrorecife.service.EstacaoService;
@@ -17,7 +18,17 @@ public class EstacaoController {
     }
 
     @GetMapping("/estacoes")
-    public List<Estacao> listarEstacoes(){
-        return estacaoService.listarEstacoes();
+    public List<Estacao> mostrarEstacoes(){
+        return estacaoService.todasEstacoes();
+    }
+
+    @GetMapping("/buscarlinha")
+    public List<Estacao> buscarLinha(@RequestParam String linha){
+        return estacaoService.buscarLinha(linha);
+    }
+
+    @GetMapping("/buscarestacao")
+    public List<Estacao> buscarEstacao(@RequestParam String nome){
+        return estacaoService.buscarEstacao(nome);
     }
 }
