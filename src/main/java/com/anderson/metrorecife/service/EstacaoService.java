@@ -4,6 +4,7 @@ import com.anderson.metrorecife.model.Estacao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
@@ -41,4 +42,12 @@ public class EstacaoService {
 
         return buscarEstacao;
     }
+
+    public Estacao buscarPorId (Integer id){
+        Optional<Estacao> buscarId = estacoes.stream()
+        .filter(estacao -> estacao.getId() == id)
+        .findFirst();
+    
+            return buscarId.orElse(null);
+    } 
 }
