@@ -20,8 +20,34 @@ public class EstacaoService {
         estacoes.add(new Estacao(2, "Joana Bezerra", "Centro"));
         estacoes.add(new Estacao(3, "Afogados", "Centro"));
         estacoes.add(new Estacao(4, "Ipiranga", "Centro"));
-        estacoes.add(new Estacao(5, "Jaboatao", "Jaboatao"));
-        estacoes.add(new Estacao(6, "Cavaleiro", "Jaboatao"));
+        estacoes.add(new Estacao(5, "Mangueira", "Centro"));
+        estacoes.add(new Estacao(6, "Santa Luzia", "Centro"));
+        estacoes.add(new Estacao(7, "Werneck", "Centro"));
+        estacoes.add(new Estacao(8, "Barro", "Centro"));
+        estacoes.add(new Estacao(9, "Tejipió", "Centro"));
+        estacoes.add(new Estacao(10, "Coqueiral", "Centro"));
+
+        estacoes.add(new Estacao(11, "Alto do Céu", "Centro"));
+        estacoes.add(new Estacao(12, "Curado", "Centro"));
+        estacoes.add(new Estacao(13, "Rodoviária", "Centro"));
+        estacoes.add(new Estacao(14, "Cosme e Damião", "Centro"));
+        estacoes.add(new Estacao(15, "Camaragibe", "Centro"));
+
+        estacoes.add(new Estacao(16, "Cavaleiro", "Centro"));
+        estacoes.add(new Estacao(17, "Floriano", "Centro"));
+        estacoes.add(new Estacao(18, "Engenho Velho", "Centro"));
+        estacoes.add(new Estacao(19, "Jaboatão", "Centro"));
+
+        estacoes.add(new Estacao(20, "Largo da Paz", "Sul"));
+        estacoes.add(new Estacao(21, "Imbiribeira", "Sul"));
+        estacoes.add(new Estacao(22, "Antônio Falcão", "Sul"));
+        estacoes.add(new Estacao(23, "Shopping", "Sul"));
+        estacoes.add(new Estacao(24, "Tancredo Neves", "Sul"));
+        estacoes.add(new Estacao(25, "Aeroporto", "Sul"));
+        estacoes.add(new Estacao(26, "Porta Larga", "Sul"));
+        estacoes.add(new Estacao(27, "Monte dos Guararapes", "Sul"));
+        estacoes.add(new Estacao(28, "Prazeres", "Sul"));
+        estacoes.add(new Estacao(29, "Cajueiro Seco", "Sul"));
         }
 
     public List<Estacao> todasEstacoes(){
