@@ -1,5 +1,6 @@
 package com.anderson.metrorecife.service;
 
+import com.anderson.metrorecife.exception.EstacaoNaoEncontradaException;
 import com.anderson.metrorecife.model.Estacao;
 
 import java.util.ArrayList;
@@ -48,6 +49,6 @@ public class EstacaoService {
         .filter(estacao -> estacao.getId() == id)
         .findFirst();
     
-            return buscarId.orElse(null);
+            return buscarId.orElseThrow(() -> new EstacaoNaoEncontradaException("Estação com ID: " + id + " Não encontrada."));
     } 
 }
