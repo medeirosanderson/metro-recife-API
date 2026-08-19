@@ -16,11 +16,13 @@ public class RotaController {
         this.rotaService = rotaService;
     }
 
-    @GetMapping
-    public double calcularDistancia(
-            @RequestParam Integer origem,
-            @RequestParam Integer destino) {
-
+    @GetMapping("/distancia")
+    public double calcularDistancia(@RequestParam Integer origem, @RequestParam Integer destino) {
         return rotaService.calcularDistancia(origem, destino);
+    }
+
+    @GetMapping("/tempo")
+        public double calcularTempo(@RequestParam Integer origemId, @RequestParam Integer destinoId){
+            return rotaService.calcularTempo(origemId, destinoId);
     }
 }

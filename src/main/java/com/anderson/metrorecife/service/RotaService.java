@@ -25,4 +25,11 @@ public class RotaService {
 
         return calculadoraRota.calcularDistancia(origem, destino);
     }
+
+    public double calcularTempo(Integer origemId, Integer destinoId){
+        Estacao origem = estacaoService.buscarPorId(origemId);
+        Estacao destino = estacaoService.buscarPorId(destinoId);
+
+        return calculadoraRota.calcularTempoMinutos(origem, destino);
+    }
 }

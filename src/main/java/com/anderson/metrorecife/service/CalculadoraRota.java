@@ -8,6 +8,7 @@ import java.util.List;
 public class CalculadoraRota {
 
     private List<Trecho> trechos;
+    private static final double VELOCIDADE_MEDIA = 40.0;
 
     public CalculadoraRota(List<Trecho> trechos) {
         this.trechos = trechos;
@@ -35,4 +36,12 @@ public class CalculadoraRota {
 
         return 0;
     }
-}
+
+    public double calcularTempoMinutos(Estacao origem, Estacao destino) {
+
+        double distancia = calcularDistancia(origem, destino);
+        double tempoHoras = distancia / VELOCIDADE_MEDIA;
+
+        return tempoHoras * 60;
+    }
+}       
