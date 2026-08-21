@@ -3,6 +3,7 @@ package com.anderson.metrorecife.service;
 import com.anderson.metrorecife.model.Estacao;
 import com.anderson.metrorecife.model.Trecho;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CalculadoraRota {
@@ -16,20 +17,46 @@ public class CalculadoraRota {
 
     public double calcularDistancia(Estacao origem, Estacao destino) {
 
-        double distanciaTotal = 0;
-        boolean encontrouOrigem = false;
+        if (origem.getId() == destino.getId()) {
+            return 0;
+        }
 
-        for (Trecho trecho : trechos) {
+        double distanciaTotal = 0;
+
+        for (int i = 0; i < trechos.size(); i++) {
+
+            Trecho trecho = trechos.get(i);
 
             if (trecho.getOrigem().getId() == origem.getId()) {
-                encontrouOrigem = true;
+
+                for (int j = i; j < trechos.size(); j++) {
+
+                    Trecho trechoAtual = trechos.get(j);
+                    distanciaTotal += trechoAtual.getDistancia();
+
+                    if (trechoAtual.getDestino().getId() == destino.getId()) {
+                        return distanciaTotal;
+                    }
+                }
             }
+        }
 
-            if (encontrouOrigem) {
-                distanciaTotal += trecho.getDistancia();
+        distanciaTotal = 0;
 
-                if (trecho.getDestino().getId() == destino.getId()) {
-                    return distanciaTotal;
+        for (int i = trechos.size() - 1; i >= 0; i--) {
+
+            Trecho trecho = trechos.get(i);
+
+            if (trecho.getDestino().getId() == origem.getId()) {
+
+                for (int j = i; j >= 0; j--) {
+
+                    Trecho trechoAtual = trechos.get(j);
+                    distanciaTotal += trechoAtual.getDistancia();
+
+                    if (trechoAtual.getOrigem().getId() == destino.getId()) {
+                        return distanciaTotal;
+                    }
                 }
             }
         }
@@ -37,11 +64,69 @@ public class CalculadoraRota {
         return 0;
     }
 
-    public double calcularTempoMinutos(Estacao origem, Estacao destino) {
+    public List<Estacao> calcularCaminho(Estacao origem, Estacao destino) {
+
+        List<Estacao> caminho = new ArrayList<>();
+
+        if (origem.getId() == destino.getId()) {
+            return List.of(origem);
+        }
+
+        for (int i = 0; i < trechos.size(); i++) {
+
+            Trecho trecho = trechos.get(i);
+
+            if (trecho.getOrigem().getId() == origem.getId()) {
+
+                caminho.add(trecho.getOrigem());
+
+                for (int j = i; j < trechos.size(); j++) {
+
+                    Trecho trechoAtual = trechos.get(j);
+
+                    caminho.add(trechoAtual.getDestino());
+
+                    if (trechoAtual.getDestino().getId() == destino.getId()) {
+                        return caminho;
+                    }
+                }
+
+                caminho.clear();
+            }
+        }
+
+        for (int i = trechos.size() - 1; i >= 0; i--) {
+
+            Trecho trecho = trechos.get(i);
+
+            if (trecho.getDestino().getId() == origem.getId()) {
+
+                caminho.add(trecho.getDestino());
+
+                for (int j = i; j >= 0; j--) {
+
+                    Trecho trechoAtual = trechos.get(j);
+
+                    caminho.add(trechoAtual.getOrigem());
+
+                    if (trechoAtual.getOrigem().getId() == destino.getId()) {
+                        return caminho;
+                    }
+                }
+
+                caminho.clear();
+            }
+        }
+
+        return new ArrayList<>();
+    }
+
+    public long calcularTempoMinutos(Estacao origem, Estacao destino) {
 
         double distancia = calcularDistancia(origem, destino);
+
         double tempoHoras = distancia / VELOCIDADE_MEDIA;
 
-        return tempoHoras * 60;
+        return Math.round(tempoHoras * 60);
     }
-}       
+}

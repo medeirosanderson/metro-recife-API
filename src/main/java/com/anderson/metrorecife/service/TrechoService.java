@@ -49,4 +49,19 @@ public class TrechoService {
     public List<Trecho> todosTrechos() {
         return trechos;
     }
+
+    public Trecho buscarTrecho(Estacao origem, Estacao destino) {
+    return trechos.stream()
+            .filter(trecho ->
+                    (trecho.getOrigem().getId() == origem.getId()
+                    && trecho.getDestino().getId() == destino.getId())
+
+                    ||
+
+                    (trecho.getOrigem().getId() == destino.getId()
+                    && trecho.getDestino().getId() == origem.getId())
+            )
+            .findFirst()
+            .orElse(null);
+    }
 }

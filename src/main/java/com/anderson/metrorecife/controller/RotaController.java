@@ -1,5 +1,6 @@
 package com.anderson.metrorecife.controller;
 
+import com.anderson.metrorecife.model.Rota;
 import com.anderson.metrorecife.service.RotaService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,11 @@ public class RotaController {
         this.rotaService = rotaService;
     }
 
+    @GetMapping()
+    public Rota calcularRota(@RequestParam Integer origem, @RequestParam Integer destino){
+        return rotaService.calcularRota(origem, destino);
+    }
+
     @GetMapping("/distancia")
     public double calcularDistancia(@RequestParam Integer origem, @RequestParam Integer destino) {
         return rotaService.calcularDistancia(origem, destino);
@@ -25,4 +31,6 @@ public class RotaController {
         public double calcularTempo(@RequestParam Integer origemId, @RequestParam Integer destinoId){
             return rotaService.calcularTempo(origemId, destinoId);
     }
+
+
 }
