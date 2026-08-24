@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public class TrechoService {
 
-    private List<Trecho> trechos = new ArrayList<>();
+    private final List<Trecho> trechos = new ArrayList<>();
 
     public TrechoService(EstacaoService estacaoService) {
 
@@ -29,21 +29,35 @@ public class TrechoService {
         Estacao rodoviaria = estacaoService.buscarPorId(13);
         Estacao cosmeEDamiao = estacaoService.buscarPorId(14);
         Estacao camaragibe = estacaoService.buscarPorId(15);
+        
+        Estacao cavaleiro = estacaoService.buscarPorId(16);
+        Estacao floriano = estacaoService.buscarPorId(17);
+        Estacao engenhoVelho = estacaoService.buscarPorId(18);
+        Estacao jaboatao = estacaoService.buscarPorId(19);
 
-        trechos.add(new Trecho(recife, joanaBezerra, 1.5));
-        trechos.add(new Trecho(joanaBezerra, afogados, 1.8));
-        trechos.add(new Trecho(afogados, ipiranga, 1.2));
-        trechos.add(new Trecho(ipiranga, mangueira, 1.1));
-        trechos.add(new Trecho(mangueira, santaLuzia, 1.0));
-        trechos.add(new Trecho(santaLuzia, werneck, 1.2));
-        trechos.add(new Trecho(werneck, barro, 1.5));
-        trechos.add(new Trecho(barro, tejipio, 1.4));
-        trechos.add(new Trecho(tejipio, coqueiral, 1.3));
-        trechos.add(new Trecho(coqueiral, altoDoCeu, 2.0));
-        trechos.add(new Trecho(altoDoCeu, curado, 1.5));
-        trechos.add(new Trecho(curado, rodoviaria, 1.2));
-        trechos.add(new Trecho(rodoviaria, cosmeEDamiao, 1.4));
-        trechos.add(new Trecho(cosmeEDamiao, camaragibe, 2.0));
+        adicionarTrecho(recife, joanaBezerra, 1.5);
+        adicionarTrecho(joanaBezerra, afogados, 1.8);
+        adicionarTrecho(afogados, ipiranga, 1.2);
+        adicionarTrecho(ipiranga, mangueira, 1.1);
+        adicionarTrecho(mangueira, santaLuzia, 1.0);
+        adicionarTrecho(santaLuzia, werneck, 1.2);
+        adicionarTrecho(werneck, barro, 1.5);
+        adicionarTrecho(barro, tejipio, 1.4);
+        adicionarTrecho(tejipio, coqueiral, 1.3);
+        adicionarTrecho(coqueiral, altoDoCeu, 2.0);
+        adicionarTrecho(altoDoCeu, curado, 1.5);
+        adicionarTrecho(curado, rodoviaria, 1.2);
+        adicionarTrecho(rodoviaria, cosmeEDamiao, 1.4);
+        adicionarTrecho(cosmeEDamiao, camaragibe, 2.0);
+
+        adicionarTrecho(coqueiral, cavaleiro, 1.0);
+        adicionarTrecho(cavaleiro, floriano, 2.7);
+        adicionarTrecho(floriano, engenhoVelho, 1.3);
+        adicionarTrecho(engenhoVelho, jaboatao, 1.4);
+    }
+
+    private void adicionarTrecho(Estacao origem, Estacao destino, double distancia){
+        trechos.add(new Trecho(origem, destino, distancia));
     }
 
     public List<Trecho> todosTrechos() {
