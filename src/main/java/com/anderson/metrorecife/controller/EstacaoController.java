@@ -32,12 +32,12 @@ public class EstacaoController {
         return estacaoService.todasEstacoes();
     }
 
-    @GetMapping("/buscarlinha")
+    @GetMapping("/linha")
     public List<Estacao> buscarLinha(@RequestParam String linha){
         return estacaoService.buscarLinha(linha);
     }
 
-    @GetMapping("/buscarestacao")
+    @GetMapping("/estacao")
     public List<Estacao> buscarEstacao(@RequestParam String nome){
         return estacaoService.buscarEstacao(nome);
     }
