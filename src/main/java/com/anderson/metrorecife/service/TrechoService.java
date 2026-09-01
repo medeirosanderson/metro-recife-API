@@ -60,6 +60,15 @@ public class TrechoService {
         trechos.add(new Trecho(origem, destino, distancia));
     }
 
+    public List<Trecho> buscarTrechosDaEstacao(Estacao estacao) {
+        return trechos.stream()
+                .filter(trecho ->
+                        trecho.getOrigem().getId() == estacao.getId()
+                                || trecho.getDestino().getId() == estacao.getId()
+                )
+                .toList();
+    }
+
     public List<Trecho> todosTrechos() {
         return trechos;
     }

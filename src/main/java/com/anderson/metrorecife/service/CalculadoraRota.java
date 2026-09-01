@@ -15,6 +15,15 @@ public class CalculadoraRota {
         this.trechos = trechos;
     }
 
+    private Estacao encontrarProximaEstacao(Trecho trecho, Estacao atual) {
+
+        if (trecho.getOrigem().getId() == atual.getId()) {
+            return trecho.getDestino();
+        }
+
+        return trecho.getOrigem();
+    }
+
     public double calcularDistancia(Estacao origem, Estacao destino) {
 
         if (origem.getId() == destino.getId()) {
@@ -71,6 +80,8 @@ public class CalculadoraRota {
         if (origem.getId() == destino.getId()) {
             return List.of(origem);
         }
+
+        Estacao atual = origem;
 
         for (int i = 0; i < trechos.size(); i++) {
 
