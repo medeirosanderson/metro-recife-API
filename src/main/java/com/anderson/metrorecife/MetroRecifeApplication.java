@@ -8,6 +8,7 @@ public class MetroRecifeApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(MetroRecifeApplication.class, args);
+		System.out.println("MetroRecifeApplication is running...");
 	}
 
 }
